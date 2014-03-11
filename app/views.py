@@ -11,10 +11,11 @@ from registration.signals import user_activated
 from django.contrib.auth.models import Group
 
 def add2group(sender, user, request, **kwargs):
-    Balance.objects.create(
-        user=user,
-        summ = 0.0
-    )
+    if not user.balance:
+        Balance.objects.create(
+            user=user,
+            summ = 0.0
+        )
     group = Group.objects.get(name='clients')
     group.user_set.add(user)
 
@@ -26,7 +27,6 @@ def payment(sender, **kwargs):
         bid.status = True
         bid.save()
         balance.save()
-        print bid.user.balance
 
 result_received.connect(payment)
 user_activated.connect(add2group)
