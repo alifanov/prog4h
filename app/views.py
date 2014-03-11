@@ -9,6 +9,11 @@ from django.utils.decorators import method_decorator
 from robokassa.signals import result_received
 
 def payment(sender, **kwargs):
+    if kwargs.get('InvId'):
+        bid = Bid.objects.get(pk=kwargs.get('InvId'))
+        balance = bid.user.balance
+        balance.summ += bid.summ
+        balance.save()
     print kwargs
 
 result_received.connect(payment)
