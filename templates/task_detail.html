@@ -9,7 +9,7 @@
     <form class="form-inline" method="POST" action="" style="padding-bottom: 40px;">
         {% csrf_token %}
         <div class="form-group">
-            <input type="text" name="price" class="form-control" placeholder="Стоимость задачи" value="{{ task.price }}" />
+            <input type="text" name="price" class="form-control" placeholder="Стоимость задачи" value="{{ task.price|default:"0.0 }}" />
         </div>
         <button class="btn btn-success">Оценить задачу</button>
     </form>
