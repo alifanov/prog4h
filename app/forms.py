@@ -1,6 +1,13 @@
 # coding: utf-8
-from django.forms import ModelForm, Form, CharField, PasswordInput, ValidationError
+from django.forms import ModelForm, Form, CharField, PasswordInput, ValidationError, TextInput
 from app.models import Task
+from robokassa.forms import RobokassaForm
+
+class FluidRobokassaForm(RobokassaForm):
+
+    def __init__(self, *args, **kwargs):
+        super(FluidRobokassaForm, self).__init__(*args, **kwargs)
+        self.fields['OutSum'].widget = TextInput()
 
 class TaskForm(ModelForm):
     class Meta(object):

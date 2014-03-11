@@ -2,11 +2,11 @@
 from django.http import Http404
 from django.views.generic import TemplateView, ListView, CreateView, FormView, DetailView
 from app.models import Task, Comment, Bid, Balance
-from app.forms import TaskForm, PasswordReset
+from app.forms import TaskForm, PasswordReset, FluidRobokassaForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from robokassa.forms import RobokassaForm
+#from robokassa.forms import RobokassaForm
 
 class DashboardView(ListView):
     template_name = 'dashboard.html'
@@ -120,7 +120,7 @@ class BalanceView(ListView):
             user=self.request.user
         )
         # TODO: del old bids
-        ctx['form'] = RobokassaForm(initial={
+        ctx['form'] = FluidRobokassaForm(initial={
             'OutSum': bid.summ,
             'InvId': bid.pk,
             'Email': self.request.user.email
