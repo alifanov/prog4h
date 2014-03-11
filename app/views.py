@@ -11,12 +11,12 @@ from registration.signals import user_activated
 from django.contrib.auth.models import Group
 
 def add2group(sender, user, request, **kwargs):
+    Balance.objects.create(
+        user=user,
+        summ = 0.0
+    )
     group = Group.objects.get(name='clients')
     group.user_set.add(user)
-#    Balance.objects.create(
-#        user=user,
-#        summ = 0.0
-#    )
 
 def payment(sender, **kwargs):
     if kwargs.get('InvId'):
