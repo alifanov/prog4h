@@ -16,7 +16,7 @@ class Balance(models.Model):
     summ = models.DecimalField(decimal_places=2, max_digits=8, verbose_name=u'Сумма')
 
     def __unicode__(self):
-        return u'[{}]: []'.format(self.summ, self.user.username)
+        return u'[{}]: {}'.format(self.summ, self.user.username)
 
     class Meta:
         verbose_name = u'Баланс пользователя'
