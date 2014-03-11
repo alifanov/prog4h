@@ -93,7 +93,7 @@ class DoneTasksView(DashboardView):
 class NewTaskView(CreateView):
     form_class = TaskForm
     template_name = 'task_create.html'
-    success_url = '/new_tasks/'
+    success_url = '/tasks/new/'
 
     def form_valid(self, form):
         args = form.cleaned_data
