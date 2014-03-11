@@ -23,7 +23,7 @@
     {% endif %}
 
     {% if form %}
-        <form role="form" method="POST" action="{{ form.target }}">
+        <form role="form" method="POST" action="{{ form.target }}" class="col-lg-3">
             {% csrf_token %}
             {% for field in form %}
                 <div class="form-group">
