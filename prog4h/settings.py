@@ -152,7 +152,8 @@ INSTALLED_APPS = (
     'app',
     'registration',
     'south',
-    'widget_tweaks'
+    'widget_tweaks',
+    'robokassa'
 )
 
 ACCOUNT_ACTIVATION_DAYS = 3
