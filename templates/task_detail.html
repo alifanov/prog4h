@@ -25,7 +25,16 @@
         {{ task.text }}
     </p>
     {% for comment in comments %}
-        <div class="panel {% if comment.user == request.user %}panel-default{% else %}panel-success{% endif %}">
+        <div class="panel
+        {% if comment.user == request.user %}
+            panel-default
+        {% else %}
+            {% if comment.hidden %}
+                panel-clear
+            {% else %}
+                panel-success
+            {% endif %}
+        {% endif %}">
             <div class="panel-heading">
                 <div class="clearfix">
                     <div class="pull-right">{{ comment.user.username }}</div>
