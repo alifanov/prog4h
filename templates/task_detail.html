@@ -15,9 +15,9 @@
     </form>
     {% else %}
         {% if task.price %}
-            <div class="">
-                Цена: {{ task.title }}
-            </div>
+            <strong class="" style="padding-bottom: 40px; ">
+                Цена: {{ task.price }}
+            </strong>
         {% endif %}
     {% endif %}
 
