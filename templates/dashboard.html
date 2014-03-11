@@ -18,7 +18,9 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'add_task' %}">Создать задачу</a></li>
+                {% if is_client %}
+                    <li><a href="{% url 'add_task' %}">Создать задачу</a></li>
+                {% endif %}
                 {% if balance %}
                     <li><a href="{% url 'balance' %}">{{ balance.summ|default:"0" }} руб.</a></li>
                 {% endif %}
