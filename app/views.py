@@ -46,7 +46,7 @@ class DashboardView(ListView):
         return super(DashboardView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        if self.request.user.groups.filter('clients').exists():
+        if self.request.user.groups.filter('clients').count():
             return Task.objects.filter(author=self.request.user).order_by('-created')
         return Task.objects.order_by('-created')
 
