@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from app.views import DashboardView, NewTaskView, NewTasksView, InWorkTasksView, DoneTasksView, CompletedTasksView,\
-TaskView, UpdatePasswordView
+TaskView, UpdatePasswordView, BalanceView
 from registration.backends.default.views import RegistrationView
 from registration.forms import RegistrationFormUniqueEmail
 
@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 
     url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^new_password/$', UpdatePasswordView.as_view(), name='new_password'),
+    url(r'^balance/$', BalanceView.as_view(), name='balance'),
     url(r'^task/add/$', NewTaskView.as_view(), name='add_task'),
     url(r'^task/(?P<pk>\d+)/$', TaskView.as_view(), name='task_detail'),
 

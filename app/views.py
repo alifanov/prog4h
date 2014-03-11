@@ -1,11 +1,12 @@
 # coding: utf-8
 from django.http import Http404
 from django.views.generic import TemplateView, ListView, CreateView, FormView, DetailView
-from app.models import Task, Comment
+from app.models import Task, Comment, Bid, Balance
 from app.forms import TaskForm, PasswordReset
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from robokassa.forms import RobokassaForm
 
 class DashboardView(ListView):
     template_name = 'dashboard.html'
@@ -104,6 +105,27 @@ class UpdatePasswordView(FormView):
         self.request.user.set_password(new_password)
         self.request.user.save()
         return self.render_to_response(self.get_context_data())
+
+class BalanceView(ListView):
+    model = Bid
+    context_object_name = 'bids'
+    template_name = 'balance.html'
+
+    def get_queryset(self):
+        return Bid.objects.filter(user=self.request.user).order_by('-created')
+
+    def get_context_data(self, **kwargs):
+        ctx = super(BalanceView, self).get_context_data(**kwargs)
+        bid = Bid.objects.create(
+            user=self.request.user
+        )
+        # TODO: del old bids
+        ctx['form'] = RobokassaForm(initial={
+            'OutSum': bid.summ,
+            'InvId': bid.pk,
+            'Email': self.request.user.email
+        })
+        return ctx
 
 class TaskView(DetailView):
     template_name = 'task_detail.html'

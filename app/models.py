@@ -11,6 +11,30 @@ STATUS_CHOICE = (
     ('C', u'Выполнена')
 )
 
+class Balance(models.Model):
+    user = models.ForeignKey(User, verbose_name=u'Пользователь')
+    summ = models.DecimalField(decimal_places=2, max_digits=8, verbose_name=u'Сумма')
+
+    def __unicode__(self):
+        return u'[{}]: []'.format(self.summ, self.user.username)
+
+    class Meta:
+        verbose_name = u'Баланс пользователя'
+        verbose_name_plural = u'Балансы пользователей'
+
+class Bid(models.Model):
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата создания')
+    summ = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Сумма', default=100.0)
+    user = models.ForeignKey(User, verbose_name=u'Пользователь')
+    status = models.BooleanField(verbose_name=u'Выполнена', default=False)
+
+    def __unicode__(self):
+        return u'[{}]: {}'.format(self.created, self.user.username)
+
+    class Meta:
+        verbose_name = u'Транзакция'
+        verbose_name_plural = u'Транзакции'
+
 class Task(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата создания')
     title = models.CharField(max_length=512, verbose_name=u'Описание задачи')
