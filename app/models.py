@@ -42,7 +42,7 @@ class Task(models.Model):
     author = models.ForeignKey(User, verbose_name=u'Автор задачи', related_name='created_tasks')
     worker = models.ForeignKey(User, verbose_name=u'Ответственный за задачу', related_name='work_tasks', null=True)
     status = models.CharField(choices=STATUS_CHOICE, verbose_name=u'Статус задачи', max_length=1, default='N')
-    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', null=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', blank=True)
 
     def get_comments(self, user):
         if user.groups.filter(name='clients').exists():
