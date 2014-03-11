@@ -7,6 +7,12 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from robokassa.signals import result_received
+from registration.signals import user_activated
+from django.contrib.auth.models import Group
+
+def add2group(sender, user, request, **kwargs):
+    group = Group.objects.get(name='clients')
+    group.add(user)
 
 def payment(sender, **kwargs):
     if kwargs.get('InvId'):
@@ -19,6 +25,7 @@ def payment(sender, **kwargs):
         print bid.user.balance
 
 result_received.connect(payment)
+user_activated.connect(add2group)
 
 class DashboardView(ListView):
     template_name = 'dashboard.html'
