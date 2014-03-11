@@ -29,11 +29,7 @@
         {% if comment.user == request.user %}
             panel-default
         {% else %}
-            {% if comment.hidden %}
-                panel-clear
-            {% else %}
-                panel-success
-            {% endif %}
+            panel-success
         {% endif %}">
             <div class="panel-heading">
                 <div class="clearfix">
