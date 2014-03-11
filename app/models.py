@@ -12,7 +12,7 @@ STATUS_CHOICE = (
 )
 
 class Balance(models.Model):
-    user = models.ForeignKey(User, verbose_name=u'Пользователь')
+    user = models.OneToOneField(User, verbose_name=u'Пользователь', related_name='balance')
     summ = models.DecimalField(decimal_places=2, max_digits=8, verbose_name=u'Сумма')
 
     def __unicode__(self):
