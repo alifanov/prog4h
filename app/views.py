@@ -124,7 +124,7 @@ class BalanceView(ListView):
     template_name = 'balance.html'
 
     def get_queryset(self):
-        return Bid.objects.filter(user=self.request.user).order_by('-created')
+        return Bid.objects.filter(user=self.request.user, status=True).order_by('-created')
 
     def get_context_data(self, **kwargs):
         ctx = super(BalanceView, self).get_context_data(**kwargs)
