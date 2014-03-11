@@ -169,6 +169,9 @@ class TaskView(DetailView):
         if request.POST and request.POST.get('price') and not request.user.groups.filter(name='clients').exists():
             task = self.get_object()
             task.price = request.POST.get('price')
+            if request.user.balance.summ >= task.price:
+                request.user.balance.summ -= task.price
+                request.user.balance.save()
             task.save()
         if request.POST and request.POST.get('start_work') and request.user.groups.filter(name='clients').exists():
             task = self.get_object()
