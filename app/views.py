@@ -46,7 +46,9 @@ class DashboardView(ListView):
         return super(DashboardView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Task.objects.filter(author=self.request.user).order_by('-created')
+        if self.request.user.groups.filter('clients').exists():
+            return Task.objects.filter(author=self.request.user).order_by('-created')
+        return Task.objects.order_by('-created')
 
     def get_context_data(self, **kwargs):
         ctx = super(DashboardView, self).get_context_data(**kwargs)
