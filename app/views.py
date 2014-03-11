@@ -6,7 +6,12 @@ from app.forms import TaskForm, PasswordReset, FluidRobokassaForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-#from robokassa.forms import RobokassaForm
+from robokassa.signals import result_received
+
+def payment(sender, **kwargs):
+    print kwargs
+
+result_received.connect(payment)
 
 class DashboardView(ListView):
     template_name = 'dashboard.html'
