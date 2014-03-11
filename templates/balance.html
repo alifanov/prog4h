@@ -27,7 +27,6 @@
             {% csrf_token %}
             {% for field in form %}
                 <div class="form-group">
-                    {{ field.label_tag }}
                     {{ field|attr:"class:form-control" }}
                 </div>
             {% endfor %}
@@ -35,9 +34,12 @@
         </form>
     {% endif %}
 
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+
     <h1 class="page-header">Последние операции</h1>
 
-    <table class="table">
+    <table class="table table-stripped">
         <thead>
         <tr>
             <td>ID</td>
