@@ -166,6 +166,10 @@ class TaskView(DetailView):
             if request.POST.get('hidden') == '1':
                 a['hidden'] = True
             Comment.objects.create(**a)
+        if request.POST and request.POST.get('price'):
+            task = self.get_object()
+            task.price = request.POST.get('price')
+            task.save()
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):

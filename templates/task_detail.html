@@ -6,10 +6,9 @@
     <h1 class="page-header">{{ task.title }}</h1>
 
     {% if not is_client %}
-    <form class="form-inline" method="POST" action="">
+    <form class="form-inline" method="POST" action="" style="padding-bottom: 40px;">
         <div class="form-group">
-            <label>Стоимость задачи</label>
-            <input type="text" name="price" class="form-control" placeholder="Стоимость задачи" />
+            <input type="text" name="price" class="form-control" placeholder="Стоимость задачи" value="{{ task.price }}" />
         </div>
         <button class="btn btn-success">Оценить задачу</button>
     </form>
