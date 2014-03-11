@@ -13,6 +13,8 @@ def payment(sender, **kwargs):
         bid = Bid.objects.get(pk=kwargs.get('InvId'))
         balance = bid.user.balance
         balance.summ += bid.summ
+        bid.status = True
+        bid.save()
         balance.save()
     print kwargs
 
