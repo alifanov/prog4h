@@ -16,7 +16,7 @@ def payment(sender, **kwargs):
         bid.status = True
         bid.save()
         balance.save()
-    print kwargs
+        print bid.user.balance
 
 result_received.connect(payment)
 
