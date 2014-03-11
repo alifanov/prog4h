@@ -28,7 +28,7 @@
                 <form role="form" method="POST" action="{{ form.target }}">
                     {% csrf_token %}
                     {% for field in form %}
-                        <div class="form-group">
+                        <div class="form-horizontal">
                             {{ field|attr:"class:form-control" }}
                         </div>
                     {% endfor %}
