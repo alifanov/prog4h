@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link href="{{ STATIC_URL }}css/dashboard.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'dashboard' %}">Программист на час</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'add_task' %}">Создать задачу</a></li>
+                <li><a href="#">100 руб.</a></li>
+                <li><a href="{% url 'new_password' %}">Профиль</a></li>
+                <li><a href="#">Помощь</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="{% if active == 'all' %}active{% endif %}"><a href="{% url 'dashboard' %}">Все задачи</a></li>
+                        <li class="{% if active == 'new' %}active{% endif %}"><a href="{% url 'new_tasks' %}">Новые</a></li>
+                        <li class="{% if active == 'inwork' %}active{% endif %}"><a href="{% url 'inwork_tasks' %}">В работе</a></li>
+                        <li class="{% if active == 'completed' %}active{% endif %}"><a href="{% url 'completed_tasks' %}">Выполненые</a></li>
+                        <li class="{% if active == 'done' %}active{% endif %}"><a href="{% url 'done_tasks' %}">Закрытые</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    {% block dashboard_content %}
+                    <h1 class="page-header">{{ title }}</h1>
+
+                    {% for task in tasks %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a href="{% url 'task_detail' pk=task.pk %}">{{ task.title }}</a>
+                                <div class="pull-right">{{ task.created }}</div>
+                            </div>
+                            <div class="panel-body">
+                                {{ task.text }}
+                                <hr />
+                                <a href="{% url 'task_detail' pk=task.pk %}" class="pull-right">Комментарии ({{ task.comments.count }})</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

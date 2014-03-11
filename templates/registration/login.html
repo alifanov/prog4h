@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/signin.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        {% if form.non_field_errors %}
+            <div class="alert-warning">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {% if form.errors %}
+            <div class="alert alert-error">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {% for field in form %}
+                    {% if field.errors %}
+                        <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form class="form-signin" role="form" method="POST">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">Войти на сайт</h2>
+            <input type="text" name="username" placeholder="Имя пользователя" class="form-control" required autofocus="" />
+            <input type="password" name="password" placeholder="Пароль" class="form-control" required autofocus="" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        </form>
+
+    </div>
+{% endblock %}

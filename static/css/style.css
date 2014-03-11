@@ -1,0 +1,119 @@
+body {
+    background: url('../img/bg.png') repeat-x;
+}
+
+.head {
+    background: white;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.feedback .panel-body {
+    min-height: 125px;
+}
+
+.title-utp {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 26px;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.old-price {
+    color: red;
+    text-decoration: line-through;
+    font-size: 20px;
+}
+
+.new-price {
+    font-size: 24px;
+}
+
+.profit {
+    background: white;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-bottom: 0px;
+}
+
+.feedback {
+    background: #eee;
+}
+
+.feedback .panel img {
+    margin-right: 10px;
+}
+
+.phone-footer{
+    font-size: 19px;
+}
+
+.email-footer {
+    font-size: 16px;
+}
+
+footer {
+    background: url('../img/bg-footer.jpg');
+    min-height: 200px;
+    color: white;
+}
+
+.call-order-form {
+    padding: 30px;
+    width: 365px;
+}
+
+.call-order-form h4 {
+    font-size: 14px;
+}
+
+.thx p{
+    padding: 30px;;
+    padding-bottom: 10px;;
+}
+
+.price {
+    position: absolute;
+    left: -45px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    top: -20px;
+    background: #5cb85c;
+    padding: 10px;
+    width: 180px;
+    border-radius: 5px 0px 10px 0px;
+    box-shadow: 2px 2px 12px 1px black;
+}
+
+.feedback .work {
+    text-align: center;
+    padding-bottom: 20px;;
+}
+
+.feedback .work p{
+    text-align: justify;
+}
+
+.feedback .work img {
+    border-radius: 5px;
+}
+
+.media {
+    padding-bottom: 40px;
+}
+
+.work-scheme h4 {
+    min-height: 60px;
+    text-align: center;
+}
+
+.work-scheme img {
+    text-align: center;
+    padding-bottom: 30px;;
+}
