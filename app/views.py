@@ -12,7 +12,7 @@ from django.contrib.auth.models import Group
 
 def add2group(sender, user, request, **kwargs):
     group = Group.objects.get(name='clients')
-    group.add(user)
+    group.users.add(user)
 
 def payment(sender, **kwargs):
     if kwargs.get('InvId'):
