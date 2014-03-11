@@ -166,9 +166,13 @@ class TaskView(DetailView):
             if request.POST.get('hidden') == '1':
                 a['hidden'] = True
             Comment.objects.create(**a)
-        if request.POST and request.POST.get('price'):
+        if request.POST and request.POST.get('price') and not request.user.groups.filter(name='clients').exists():
             task = self.get_object()
             task.price = request.POST.get('price')
+            task.save()
+        if request.POST and request.POST.get('start_work') and request.user.groups.filter(name='clients').exists():
+            task = self.get_object()
+            task.status = 'I'
             task.save()
         return self.get(request, *args, **kwargs)
 
