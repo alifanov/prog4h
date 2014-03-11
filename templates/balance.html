@@ -23,15 +23,19 @@
     {% endif %}
 
     {% if form %}
-        <form role="form" method="POST" action="{{ form.target }}" class="col-lg-3">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    {{ field|attr:"class:form-control" }}
-                </div>
-            {% endfor %}
-            <button class="btn btn-primary">Пополнить баланс</button>
-        </form>
+        <div class="row">
+            <div class="col-lg-4">
+                <form role="form" method="POST" action="{{ form.target }}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field|attr:"class:form-control" }}
+                        </div>
+                    {% endfor %}
+                    <button class="btn btn-primary">Пополнить баланс</button>
+                </form>
+            </div>
+        </div>
     {% endif %}
 
     <div class="" style="padding-bottom: 60px;"></div>
