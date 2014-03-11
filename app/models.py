@@ -44,6 +44,10 @@ class Task(models.Model):
     status = models.CharField(choices=STATUS_CHOICE, verbose_name=u'Статус задачи', max_length=1, default='N')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', blank=True)
 
+    def in_work(self):
+        if self.status != 'N': return True
+        return False
+
     def get_comments(self, user):
         if user.groups.filter(name='clients').exists():
             return self.comments.filter(hidden=False).order_by('timestamp')
