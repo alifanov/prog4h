@@ -35,11 +35,21 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="{% if active == 'all' %}active{% endif %}"><a href="{% url 'dashboard' %}">Все задачи</a></li>
-                        <li class="{% if active == 'new' %}active{% endif %}"><a href="{% url 'new_tasks' %}">Новые</a></li>
-                        <li class="{% if active == 'inwork' %}active{% endif %}"><a href="{% url 'inwork_tasks' %}">В работе</a></li>
-                        <li class="{% if active == 'completed' %}active{% endif %}"><a href="{% url 'completed_tasks' %}">Выполненые</a></li>
-                        <li class="{% if active == 'done' %}active{% endif %}"><a href="{% url 'done_tasks' %}">Закрытые</a></li>
+                        <li class="{% if active == 'all' %}active{% endif %}">
+                            <a href="{% url 'dashboard' %}">Все задачи ({{ all_tasks_cnt }})</a>
+                        </li>
+                        <li class="{% if active == 'new' %}active{% endif %}">
+                            <a href="{% url 'new_tasks' %}">Новые ({{ new_tasks_cnt }})</a>
+                        </li>
+                        <li class="{% if active == 'inwork' %}active{% endif %}">
+                            <a href="{% url 'inwork_tasks' %}">В работе ({{ inwork_tasks_cnt }})</a>
+                        </li>
+                        <li class="{% if active == 'completed' %}active{% endif %}">
+                            <a href="{% url 'completed_tasks' %}">Выполненые ({{ completed_tasks_cnt }})</a>
+                        </li>
+                        <li class="{% if active == 'done' %}active{% endif %}">
+                            <a href="{% url 'done_tasks' %}">Закрытые ({{ done_tasks_cnt }})</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
