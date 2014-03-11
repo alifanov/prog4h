@@ -19,7 +19,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'add_task' %}">Создать задачу</a></li>
-                <li><a href="{% url 'balance' %}">{{ balance.summ }} руб.</a></li>
+                <li><a href="{% url 'balance' %}">{{ balance.summ|default:"0" }} руб.</a></li>
                 <li><a href="{% url 'new_password' %}">Профиль</a></li>
                 <li><a href="#">Помощь</a></li>
             </ul>
