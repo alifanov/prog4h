@@ -11,7 +11,7 @@ from registration.signals import user_activated
 from django.contrib.auth.models import Group
 
 def add2group(sender, user, request, **kwargs):
-    if not user.balance:
+    if not Balance.objects.filter(user=user).exists():
         Balance.objects.create(
             user=user,
             summ = 0.0
