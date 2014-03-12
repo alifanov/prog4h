@@ -6,7 +6,7 @@
     <h1 class="page-header">{{ task.title }}</h1>
 
     {% if need_more_money %}
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <span>На вашем счету недостаточно средств. <a href="{% url 'balance' %}">Пополните баланс</a></span>
         </div>
