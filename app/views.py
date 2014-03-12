@@ -155,6 +155,7 @@ class TaskView(DetailView):
     template_name = 'task_detail.html'
     model = Task
     context_object_name = 'task'
+    need_more_money = False
 
     def post(self, request, *args, **kwargs):
         if request.POST and request.POST.get('comment_text'):
@@ -169,19 +170,22 @@ class TaskView(DetailView):
         if request.POST and request.POST.get('price') and not request.user.groups.filter(name='clients').exists():
             task = self.get_object()
             task.price = request.POST.get('price')
-            if request.user.balance.summ >= task.price:
-                request.user.balance.summ -= task.price
-                request.user.balance.save()
             task.save()
         if request.POST and request.POST.get('start_work') and request.user.groups.filter(name='clients').exists():
             task = self.get_object()
-            task.status = 'I'
-            task.save()
+            if request.user.balance.summ >= task.price:
+                request.user.balance.summ -= task.price
+                request.user.balance.save()
+                task.status = 'I'
+                task.save()
+            else:
+                self.need_more_money = True
         return self.get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(TaskView, self).get_context_data(**kwargs)
         ctx['comments'] = self.get_object().get_comments(self.request.user)
+        ctx['need_more_money'] = self.need_more_money
         return ctx
 
     def get_object(self, queryset=None):
