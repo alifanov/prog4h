@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from robokassa.signals import result_received
 from registration.signals import user_activated
 from django.contrib.auth.models import Group
+from django.db.models import Count
 
 def add2group(sender, user, request, **kwargs):
     if not Balance.objects.filter(user=user).exists():
@@ -100,6 +101,8 @@ class NewTaskView(CreateView):
     def form_valid(self, form):
         args = form.cleaned_data
         args['author'] = self.request.user
+        moderators_group = Group.objects.get(name='moderators')
+        args['worker'] = moderators_group.user_set.annotate(num_tasks=Count('work_tasks')).order_by('num_tasks')[0]
         Task.objects.create(**args)
         return redirect(self.success_url)
 
