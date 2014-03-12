@@ -30,7 +30,11 @@
             panel-default
         {% else %}
             panel-success
-        {% endif %}">
+        {% endif %}
+        {% if not is_client and comment.hidden%}
+        panel-clear
+        {% endif %}
+        ">
             <div class="panel-heading">
                 <div class="clearfix">
                     <div class="pull-right">{{ comment.user.username }}</div>
