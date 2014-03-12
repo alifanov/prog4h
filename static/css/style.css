@@ -122,6 +122,7 @@ footer {
     background-color: transparent;
 }
 
-.nav-sidebar > li.active > a > .badge {
-    background: #ffffff;
+ul.nav-sidebar > li.active > a > .badge {
+    color: #428bca;
+    background-color: #fff;
 }
