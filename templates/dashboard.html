@@ -60,7 +60,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a href="{% url 'task_detail' pk=task.pk %}">{{ task.title }}</a>
-                                {{ task.get_html_status }}
+                                {{ task.get_html_status|safe }}
                                 <div class="pull-right">{{ task.created }}</div>
                             </div>
                             <div class="panel-body">
