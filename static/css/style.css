@@ -121,3 +121,7 @@ footer {
 .panel-clear > .panel-heading {
     background-color: transparent;
 }
+
+.nav-sidebar > li.active > a > .badge {
+    background: #ffffff;
+}
