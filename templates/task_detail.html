@@ -27,7 +27,7 @@
     {% for comment in comments %}
         <div class="panel
         {% if comment.user == request.user %}
-            panel-default
+            panel-primary
         {% else %}
             panel-success
         {% endif %}
