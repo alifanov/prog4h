@@ -36,7 +36,7 @@
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
                         <li class="{% if active == 'all' %}active{% endif %}">
-                            <a href="{% url 'dashboard' %}">Все задачи <span class="badge bg-success pull-right">{{ all_tasks_cnt }}</span></a>
+                            <a href="{% url 'dashboard' %}">Все задачи <span class="badge pull-right">{{ all_tasks_cnt }}</span></a>
                         </li>
                         <li class="{% if active == 'new' %}active{% endif %}">
                             <a href="{% url 'new_tasks' %}">Новые <span class="badge pull-right">{{ new_tasks_cnt }}</span></a>
