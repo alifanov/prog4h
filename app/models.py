@@ -44,6 +44,17 @@ class Task(models.Model):
     status = models.CharField(choices=STATUS_CHOICE, verbose_name=u'Статус задачи', max_length=1, default='N')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', blank=True)
 
+    def get_html_status(self):
+        html = u'<span class="label label-{}">{}</span>'
+        if self.status == 'N':
+            return html.format(u'success', u'Новая')
+        if self.status == 'D':
+            return html.format(u'default', u'Закрыта')
+        if self.status == 'I':
+            return html.format(u'warning', u'В работе')
+        if self.status == 'C':
+            return html.format(u'primary', u'Выполнена')
+
     def in_work(self):
         if self.status != 'N': return True
         return False
