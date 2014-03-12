@@ -94,3 +94,12 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+.panel-clear > .panel-heading {
+    background-color: transparent;
+}
+
+ul.nav-sidebar > li.active > a > .badge {
+    color: #428bca;
+    background-color: #fff;
+}
