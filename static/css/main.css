@@ -6,6 +6,10 @@ html,body{
     margin-top: 100px;
 }
 
+.space {
+    margin-bottom: 50px;
+}
+
 .inner {
     background: url('../img/p4h-bg.jpg') no-repeat center center;
     background-size: cover;
