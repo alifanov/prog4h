@@ -3,5 +3,13 @@
 }
 
 .inner {
-    background: url('../img/p4h-bg.jpg');
+    background: url('../img/p4h-bg.jpg') no-repeat;
+    background-size: contain;
+}
+
+.promo {
+    margin-top: 160px;
+    text-align: center;
+    color: #ddd;
+    min-height: 230px;
 }
