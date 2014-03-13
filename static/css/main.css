@@ -10,6 +10,14 @@
 .promo {
     margin-top: 260px;
     text-align: center;
-    color: #ddd;
     min-height: 430px;
+    color: white;
+}
+
+.promo h1 {
+    font-size: 50px;
+}
+
+.promo .desc {
+    font-size: 20px;
 }
