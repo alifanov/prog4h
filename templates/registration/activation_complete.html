@@ -5,10 +5,12 @@
 
 {% block title %}Активация завершена{% endblock %}
 
-{% block auth_form %}
-    <h1 class="page-header">Активация завершена</h1>
-    <p>Теперь вы можете войти на сайт, воспользовавшись логином и паролем, указанными при регистрации</p>
-    {% if not user.is_authenticated %}
-        <a href="{% url "auth_login" %}">Войти</a>
-    {% endif %}
+{% block main %}
+    <div class="container">
+        <h1 class="page-header">Активация завершена</h1>
+        <p>Теперь вы можете войти на сайт, воспользовавшись логином и паролем, указанными при регистрации</p>
+        {% if not user.is_authenticated %}
+            <a href="{% url "auth_login" %}">Войти</a>
+        {% endif %}
+    </div>
 {% endblock %}
