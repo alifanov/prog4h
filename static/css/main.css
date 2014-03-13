@@ -37,3 +37,24 @@ footer {
 .feedback .panel img {
     margin-right: 10px;
 }
+.feedback .work {
+    text-align: center;
+    padding-bottom: 20px;;
+}
+
+.feedback .work p{
+    text-align: justify;
+}
+
+.feedback .work img {
+    border-radius: 5px;
+}
+.work-scheme h4 {
+    min-height: 60px;
+    text-align: center;
+}
+
+.work-scheme img {
+    text-align: center;
+    padding-bottom: 30px;;
+}
