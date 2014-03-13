@@ -6,8 +6,9 @@ html,body{
     min-height: 100%;
     height: auto !important;
     height: 100%;
+    padding-top: 60px;
     /* Negative indent footer by it's height */
-    /*margin: 0 auto -60px;*/
+    margin: 0 auto -200px;
 }
 
 .inner h1.page-header {
