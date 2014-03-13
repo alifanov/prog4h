@@ -11,9 +11,9 @@
     margin-top: 260px;
     text-align: center;
     min-height: 530px;
-    color: #0092d6;
+    color: #fff;
     text-transform: uppercase;
-    background: rgba(200, 200, 200, 0.7);
+    /*background: rgba(200, 200, 200, 0.7);*/
 }
 
 .promo h1 {
