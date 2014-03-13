@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 
 {% load widget_tweaks %}
 
@@ -6,7 +6,7 @@
     <link href="{{ STATIC_URL }}css/signin.css" rel="stylesheet">
 {% endblock %}
 
-{% block content %}
+{% block auth_form %}
     <div class="container">
 
         {% if form.non_field_errors %}

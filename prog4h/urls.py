@@ -5,6 +5,8 @@ TaskView, UpdatePasswordView, BalanceView
 from registration.backends.default.views import RegistrationView
 from registration.forms import RegistrationFormUniqueEmail
 
+from django.views.generic import TemplateView
+
 class RegistrationUniqEmailView(RegistrationView):
     form_class = RegistrationFormUniqueEmail
 
@@ -14,7 +16,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'prog4h.views.home', name='home'),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     # url(r'^prog4h/', include('prog4h.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -23,6 +25,10 @@ urlpatterns = patterns('',
     url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
     url(r'^new_password/$', UpdatePasswordView.as_view(), name='new_password'),
     url(r'^balance/$', BalanceView.as_view(), name='balance'),
+
+    url(r'^contacts/$', TemplateView.as_view(template_name='contacts.html'), name='contacts'),
+    url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
+
     url(r'^task/add/$', NewTaskView.as_view(), name='add_task'),
     url(r'^task/(?P<pk>\d+)/$', TaskView.as_view(), name='task_detail'),
 
