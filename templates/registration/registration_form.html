@@ -6,33 +6,38 @@
     <div class="container">
         <h1 class="page-header">Регистрация</h1>
 
-        <div class="alert-warning">
-            {% if form.non_field_errors %}
-                {{ form.non_field_errors }}
-            {% endif %}
-        </div>
-
-        {% if form.errors %}
-            <div class="alert alert-error">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                {% for field in form %}
-                    {% if field.errors %}
-                        <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div class="alert-warning">
+                    {% if form.non_field_errors %}
+                        {{ form.non_field_errors }}
                     {% endif %}
-                {% endfor %}
-            </div>
-        {% endif %}
+                </div>
 
-        <form method="post" action="">
-        {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {{ field|attr:"class:form-control" }}
-                    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
-                    {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
-            {% endfor %}
-            <input type="submit" value="Зарегистрироваться"  class="clearfix" />
-        </form>
+                {% if form.errors %}
+                    <div class="alert alert-error">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field|attr:"class:form-control" }}
+                        {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
+                        {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
+                    {% endfor %}
+                    <button class="btn btn-primary btn-block">Зарегистрироваться</button>
+                </form>            </div>
+            <div class="col-lg-4"></div>
+        </div>
     </div>
 {% endblock %}
