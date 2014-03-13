@@ -9,6 +9,8 @@
 {% block auth_form %}
     <div class="container">
 
+        <h1 class="page-header">Войти на сайт</h1>
+
         {% if form.non_field_errors %}
             <div class="alert-warning">
                 {{ form.non_field_errors }}
@@ -28,9 +30,10 @@
 
         <form class="form-signin" role="form" method="POST">
             {% csrf_token %}
-            <h2 class="form-signin-heading">Войти на сайт</h2>
-            <input type="text" name="username" placeholder="Имя пользователя" class="form-control" required autofocus="" />
-            <input type="password" name="password" placeholder="Пароль" class="form-control" required autofocus="" />
+            {{ form.username|attr:"placeholder:Имя пользователя"|attr:"class:form-control"|attr:"required:required"|attr:"autofocus:autofocus" }}
+            {{ form.password|attr:"placeholder:Пароль"|attr:"class:form-control"|attr:"required:required" }}
+{#            <input type="text" name="username" placeholder="Имя пользователя" class="form-control" required autofocus="" />#}
+{#            <input type="password" name="password" placeholder="Пароль" class="form-control" required autofocus="" />#}
             <input name="next" type="hidden" value="{% url 'dashboard' %}">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
         </form>
