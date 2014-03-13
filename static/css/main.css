@@ -3,7 +3,7 @@
 }
 
 .inner {
-    background: url('../img/p4h-bg.jpg') no-repeat;
+    background: url('../img/p4h-bg.jpg') no-repeat center center;
     background-size: cover;
 }
 
