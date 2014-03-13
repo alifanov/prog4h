@@ -1,5 +1,7 @@
 {% extends "home.html" %}
 
+{% load widget_tweaks %}
+
 {% block auth_form %}
     <div class="container">
         <h1 class="page-header">Регистрация</h1>
@@ -23,15 +25,13 @@
 
         <form method="post" action="">
         {% csrf_token %}
-            <dl class="register">
-                {% for field in form %}
-                    <dt>{{ field.label_tag }}</dt>
-                    <dd class="clearfix">{{ field }}
-                        {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
-                        {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
-                    </dd>
-                {% endfor %}
-            </dl>
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field|attr:"class:form-control" }}
+                    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
+                    {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
+            {% endfor %}
             <input type="submit" value="Зарегистрироваться"  class="clearfix" />
         </form>
     </div>
