@@ -29,3 +29,11 @@ footer {
     min-height: 200px;
     color: white;
 }
+
+.feedback {
+    background: #eee;
+}
+
+.feedback .panel img {
+    margin-right: 10px;
+}
