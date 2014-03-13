@@ -15,7 +15,7 @@
                         <li><a href="http://spark.ru/startup/progernachas/blog">Блог</a></li>
                         <li><a href="{% url 'contacts' %}">Контакты</a></li>
                         <li><a href="{% url 'about' %}">О проекте</a></li>
-                        {% if request.is_authenticated %}
+                        {% if request.user.is_authenticated %}
                             <li><a href="{% url 'dashboard' %}">Задачи</a></li>
                         {% else %}
                             <li><a href="{% url 'auth_login' %}">Войти</a></li>
@@ -35,7 +35,7 @@
                     <div class="promo">
                         <div class="row">
                             <div class="col-lg-10 col-lg-offset-1">
-                                <h1>Программист на час {{ request.user.username }}</h1>
+                                <h1>Программист на час</h1>
                                 <div class="desc">Забудь про фриланс</div>
                             </div>
                         </div>
