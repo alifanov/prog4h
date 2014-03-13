@@ -48,6 +48,7 @@ footer {
 .feedback {
     background: #F8F8F8;
     border-top: 1px solid #e7e7e7;
+    min-height: 460px;
 }
 
 .feedback .panel img {
