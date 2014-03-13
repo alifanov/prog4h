@@ -31,7 +31,7 @@ footer {
 }
 
 .feedback {
-    background: #fff;
+    background: #F8F8F8;
 }
 
 .feedback .panel img {
@@ -49,6 +49,16 @@ footer {
 .feedback .work img {
     border-radius: 5px;
 }
+
+.we-do-2 {
+    background: #F8F8F8;
+}
+
+.we-do-3,
+.we-do-1 {
+    background: #fff;
+}
+
 .work-scheme h4 {
     min-height: 60px;
     text-align: center;
