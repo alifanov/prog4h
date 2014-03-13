@@ -23,3 +23,9 @@
 .promo .desc {
     font-size: 20px;
 }
+
+footer {
+    background: url('../img/bg-footer.jpg');
+    min-height: 200px;
+    color: white;
+}
