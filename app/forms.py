@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.forms import ModelForm, Form, CharField, PasswordInput, ValidationError, TextInput
 from app.models import Task
+from django.contrib.auth.models import Group
 from robokassa.forms import RobokassaForm
 
 class FluidRobokassaForm(RobokassaForm):
@@ -15,6 +16,11 @@ class TaskForm(ModelForm):
         exclude = ('author','comments', 'worker', 'status', 'price')
 
 class ModeratorTaskForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(ModeratorTaskForm, self).__init__(*args, **kwargs)
+        self.fields['worker'].queryset = Group.objects.get(name='developers').user_set.distinct()
+
     class Meta(object):
         model = Task
         exclude = ('author','comments', 'status', 'text', 'title')
