@@ -175,8 +175,11 @@ class TaskView(DetailView):
             Comment.objects.create(**a)
         if request.POST and request.POST.get('price') and not self.is_client():
             task = self.get_object()
-            task.price = request.POST.get('price')
-            task.save()
+            form = ModeratorTaskForm(request.POST, instance=task)
+            if form.is_valid():
+                form.save()
+#            task.price = request.POST.get('price')
+#            task.save()
         if request.POST and request.POST.get('start_work') and self.is_client():
             task = self.get_object()
             if request.user.balance.summ >= task.price:
