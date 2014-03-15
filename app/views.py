@@ -176,6 +176,7 @@ class TaskView(DetailView):
         if request.POST and request.POST.get('price') and not self.is_client():
             task = self.get_object()
             form = ModeratorTaskForm(request.POST, instance=task)
+            print form.is_valid()
             if form.is_valid():
                 form.save()
 #            task.price = request.POST.get('price')
