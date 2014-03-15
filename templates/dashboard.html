@@ -25,7 +25,7 @@
                     <li><a href="{% url 'balance' %}">{{ balance.summ|default:"0" }} руб.</a></li>
                 {% endif %}
                 <li><a href="{% url 'new_password' %}">{{ request.user.username }}</a></li>
-                <li><a href="#">Помощь</a></li>
+                <li><a href="{% url 'auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span></a></li>
             </ul>
         </div>
     </div>
