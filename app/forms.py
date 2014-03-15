@@ -17,7 +17,7 @@ class TaskForm(ModelForm):
 class ModeratorTaskForm(ModelForm):
     class Meta(object):
         model = Task
-        exclude = ('author','comments', 'status', 'text')
+        exclude = ('author','comments', 'status', 'text', 'title')
 
 class PasswordReset(Form):
     oldpassword = CharField(widget=PasswordInput(), label=u'Старый пароль')
