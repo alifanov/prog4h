@@ -13,13 +13,13 @@ class FluidRobokassaForm(RobokassaForm):
 class TaskForm(ModelForm):
     class Meta(object):
         model = Task
-        exclude = ('author','comments', 'worker', 'status', 'price')
+        exclude = ('author','comments', 'worker', 'status', 'price', 'moderator')
 
 class ModeratorTaskForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ModeratorTaskForm, self).__init__(*args, **kwargs)
-        self.fields['worker'].queryset = Group.objects.get(name='developers').user_set.distinct()
+        self.fields['moderator'].queryset = Group.objects.get(name='developers').user_set.distinct()
 
     class Meta(object):
         model = Task

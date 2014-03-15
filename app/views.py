@@ -102,7 +102,7 @@ class NewTaskView(CreateView):
         args = form.cleaned_data
         args['author'] = self.request.user
         moderators_group = Group.objects.get(name='moderators')
-        args['worker'] = moderators_group.user_set.annotate(num_tasks=Count('work_tasks')).order_by('num_tasks')[0]
+        args['moderator'] = moderators_group.user_set.annotate(num_tasks=Count('moderated_tasks')).order_by('num_tasks')[0]
         Task.objects.create(**args)
         return redirect(self.success_url)
 
