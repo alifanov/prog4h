@@ -97,6 +97,7 @@ body {
 
 .panel-clear > .panel-heading {
     background-color: transparent;
+    color: #333;
 }
 
 ul.nav-sidebar > li.active > a > .badge {
