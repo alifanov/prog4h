@@ -40,7 +40,8 @@ class Task(models.Model):
     title = models.CharField(max_length=512, verbose_name=u'Описание задачи')
     text = models.TextField(verbose_name=u'Текст задачи')
     author = models.ForeignKey(User, verbose_name=u'Автор задачи', related_name='created_tasks')
-    worker = models.ForeignKey(User, verbose_name=u'Ответственный за задачу', related_name='work_tasks', null=True)
+    moderator = models.ForeignKey(User, verbose_name=u'Менеджер задачи', related_name='moderated_tasks', null=True)
+    worker = models.ForeignKey(User, verbose_name=u'Исполнитель задачи', related_name='work_tasks', null=True)
     status = models.CharField(choices=STATUS_CHOICE, verbose_name=u'Статус задачи', max_length=1, default='N')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', blank=True)
 
