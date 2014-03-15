@@ -108,3 +108,9 @@ footer {
 .title-block {
     /*background: rgba(255, 255, 255, 0.62);*/
 }
+
+.social {
+    text-align: right;
+    font-size: 15px;
+    margin-top: 30px;
+}
