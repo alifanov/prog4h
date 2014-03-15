@@ -2,7 +2,7 @@
 from django.http import Http404
 from django.views.generic import TemplateView, ListView, CreateView, FormView, DetailView
 from app.models import Task, Comment, Bid, Balance
-from app.forms import TaskForm, PasswordReset, FluidRobokassaForm
+from app.forms import TaskForm, PasswordReset, FluidRobokassaForm, ModeratorTaskForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -160,6 +160,9 @@ class TaskView(DetailView):
     context_object_name = 'task'
     need_more_money = False
 
+    def is_client(self):
+        return self.request.user.groups.filter(name='clients').exists()
+
     def post(self, request, *args, **kwargs):
         if request.POST and request.POST.get('comment_text'):
             a = {
@@ -170,11 +173,11 @@ class TaskView(DetailView):
             if request.POST.get('hidden') == '1':
                 a['hidden'] = True
             Comment.objects.create(**a)
-        if request.POST and request.POST.get('price') and not request.user.groups.filter(name='clients').exists():
+        if request.POST and request.POST.get('price') and not self.is_client():
             task = self.get_object()
             task.price = request.POST.get('price')
             task.save()
-        if request.POST and request.POST.get('start_work') and request.user.groups.filter(name='clients').exists():
+        if request.POST and request.POST.get('start_work') and self.is_client():
             task = self.get_object()
             if request.user.balance.summ >= task.price:
                 request.user.balance.summ -= task.price
@@ -189,6 +192,8 @@ class TaskView(DetailView):
         ctx = super(TaskView, self).get_context_data(**kwargs)
         ctx['comments'] = self.get_object().get_comments(self.request.user)
         ctx['need_more_money'] = self.need_more_money
+        if not self.is_client():
+            ctx['task_form'] = ModeratorTaskForm(instance=self.get_object())
         return ctx
 
     def get_object(self, queryset=None):
