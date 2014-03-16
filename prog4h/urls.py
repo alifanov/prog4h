@@ -28,6 +28,7 @@ urlpatterns = patterns('',
 
     url(r'^contacts/$', TemplateView.as_view(template_name='contacts.html'), name='contacts'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
+    url(r'^terms/$', TemplateView.as_view(template_name='terms.html'), name='terms'),
 
     url(r'^task/add/$', NewTaskView.as_view(), name='add_task'),
     url(r'^task/(?P<pk>\d+)/$', TaskView.as_view(), name='task_detail'),
