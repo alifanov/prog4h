@@ -219,4 +219,7 @@ class NewSignatureView(View):
                 'OutSum': request.POST.get('summ'),
                 'InvId': request.POST.get('oid')
             })
+            bid = Bid.objects.get(pk=request.POST.get('oid'))
+            bid.summ = request.POST.get('summ')
+            bid.save()
             return HttpResponse(form._get_signature())
