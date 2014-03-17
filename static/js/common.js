@@ -5,9 +5,9 @@
  * Time: 18:04
  * To change this template use File | Settings | File Templates.
  */
+updatePrice = false;
 
 $(function(){
-    var updatePrice = false;
     $(".balance-up-form").submit(function(){
         if(!updatePrice)
         {
