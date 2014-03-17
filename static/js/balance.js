@@ -7,7 +7,7 @@ $(function(){
             success: function(resp){
                 updatePrice = true;
                 $("#id_SignatureValue").val(resp);
-                $(".balance-up-form").submit();
+//                $(".balance-up-form").submit();
             }
         });
         return false;
