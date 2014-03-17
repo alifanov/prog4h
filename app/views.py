@@ -5,6 +5,7 @@ from app.models import Task, Comment, Bid, Balance
 from app.forms import TaskForm, PasswordReset, FluidRobokassaForm, ModeratorTaskForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from robokassa.signals import result_received
 from registration.signals import user_activated
@@ -208,6 +209,10 @@ class TaskView(DetailView):
         return object
 
 class NewSignatureView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(NewSignatureView, self).dispatch(*args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         if request.POST and request.POST.get('summ') and request.POST.get('oid'):
             form = FluidRobokassaForm(initial={
