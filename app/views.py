@@ -1,6 +1,6 @@
 # coding: utf-8
-from django.http import Http404
-from django.views.generic import TemplateView, ListView, CreateView, FormView, DetailView
+from django.http import Http404, HttpResponse
+from django.views.generic import TemplateView, ListView, CreateView, FormView, DetailView, View
 from app.models import Task, Comment, Bid, Balance
 from app.forms import TaskForm, PasswordReset, FluidRobokassaForm, ModeratorTaskForm
 from django.shortcuts import redirect
@@ -151,10 +151,10 @@ class BalanceView(ListView):
         ctx['form'] = FluidRobokassaForm(initial={
             'OutSum': bid.summ,
             'InvId': bid.pk,
-            'Desc': 'balance up',
-            'Email': self.request.user.email,
-            'Culture': 'ru',
-            'Encoding': 'utf-8'
+#            'Desc': 'balance up',
+#            'Email': self.request.user.email,
+#            'Culture': 'ru',
+#            'Encoding': 'utf-8'
         })
         return ctx
 
@@ -206,3 +206,12 @@ class TaskView(DetailView):
         if not self.request.user.is_authenticated():
             raise Http404
         return object
+
+class NewSignatureView(View):
+    def post(self, request, *args, **kwargs):
+        if request.POST and request.POST.get('summ') and request.POST.get('oid'):
+            form = FluidRobokassaForm(initial={
+                'OutSum': request.POST.get('summ'),
+                'InvId': request.POST.get('oid')
+            })
+            return HttpResponse(form._get_signature_string())
