@@ -219,4 +219,4 @@ class NewSignatureView(View):
                 'OutSum': request.POST.get('summ'),
                 'InvId': request.POST.get('oid')
             })
-            return HttpResponse(form._get_signature_string())
+            return HttpResponse(form._get_signature())
