@@ -151,6 +151,10 @@ class BalanceView(ListView):
         ctx['form'] = FluidRobokassaForm(initial={
             'OutSum': bid.summ,
             'InvId': bid.pk,
+            'Desc': 'balance up',
+            'Email': self.request.user.email,
+            'Culture': 'ru',
+            'Encoding': 'utf-8'
         })
         return ctx
 
