@@ -5,24 +5,19 @@
  * Time: 18:04
  * To change this template use File | Settings | File Templates.
  */
-updatePrice = false;
-
 $(function(){
-    $(".balance-up-form").submit(function(){
-        if(!updatePrice)
-        {
-            $.ajax({
-                url: '/get_new_signature/',
-                type: 'POST',
-                data: {summ: $('#id_OutSum').val(), oid: $("#id_InvId").val()},
-                success: function(resp){
-                    updatePrice = true;
-                    $("#id_SignatureValue").val(resp);
-                    $(".balance-up-form").submit();
-                }
-            });
-            return false;
-        }
+    $(".balance-up-form button").click(function(){
+        $.ajax({
+            url: '/get_new_signature/',
+            type: 'POST',
+            data: {summ: $('#id_OutSum').val(), oid: $("#id_InvId").val()},
+            success: function(resp){
+                updatePrice = true;
+                $("#id_SignatureValue").val(resp);
+                $(".balance-up-form").submit();
+            }
+        });
+        return false;
     });
 
     $(".call-order-form").submit(function(){
