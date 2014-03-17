@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 $(function(){
-    $(".balance-up-form button").click(function(){
+    $(".balance-up-form button.btn").click(function(){
         $.ajax({
             url: '/get_new_signature/',
             type: 'POST',
