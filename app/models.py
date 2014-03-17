@@ -43,7 +43,7 @@ class Task(models.Model):
     moderator = models.ForeignKey(User, verbose_name=u'Менеджер задачи', related_name='moderated_tasks', null=True)
     worker = models.ForeignKey(User, verbose_name=u'Исполнитель задачи', related_name='work_tasks', null=True)
     status = models.CharField(choices=STATUS_CHOICE, verbose_name=u'Статус задачи', max_length=1, default='N')
-    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', blank=True)
+    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', default=0.0)
 
     def get_html_status(self):
         html = u'<span class="label label-{}">{}</span>'
