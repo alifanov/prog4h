@@ -69,6 +69,8 @@ class Task(models.Model):
     def get_comments(self, user):
         if user.groups.filter(name='clients').exists():
             return self.comments.filter(hidden=False).order_by('timestamp')
+        if user.groups.filter(name='developers').exists():
+            return self.comments.filter(hidden=True).order_by('timestamp')
         return self.comments.order_by('timestamp')
 
     def __unicode__(self):
