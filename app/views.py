@@ -50,6 +50,8 @@ class DashboardView(ListView):
     def get_queryset(self):
         if self.request.user.groups.filter(name='clients').exists():
             return Task.objects.filter(author=self.request.user).order_by('-created')
+        if self.request.user.groups.filter(name='developers').exists():
+            return Task.objects.filter(worker=self.request.user).order_by('-created')
         return Task.objects.order_by('-created')
 
     def get_context_data(self, **kwargs):
