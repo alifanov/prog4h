@@ -85,6 +85,11 @@ class Comment(models.Model):
     hidden = models.BooleanField(default=False)
     task = models.ForeignKey(Task, related_name='comments', verbose_name=u'Задача')
 
+    def save(self, *args, **kwargs):
+        msg = u'Создан новый комментарий:\n{}'.format(self.text)
+        send_mail(u'Новый комментарий', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com',])
+        super(Comment, self).save(*args, **kwargs)
+
     def __unicode__(self):
         return u'[{}]: {}'.format(self.timestamp, self.user.username)
 
