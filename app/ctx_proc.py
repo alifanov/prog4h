@@ -18,4 +18,6 @@ def permission_processor(request):
         ctx['completed_tasks_cnt'] = Task.objects.filter(status='C').count()
         ctx['done_tasks_cnt'] = Task.objects.filter(status='D').count()
     ctx['is_client'] = is_client
+    ctx['is_moderator'] = request.user.groups.filter(name='moderators').exists()
+    ctx['is_developer'] = request.user.groups.filter(name='developers').exists()
     return ctx
