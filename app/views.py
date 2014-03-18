@@ -170,6 +170,9 @@ class TaskView(DetailView):
     def is_client(self):
         return self.request.user.groups.filter(name='clients').exists()
 
+    def is_developer(self):
+        return self.request.user.groups.filter(name='developers').exists()
+
     def post(self, request, *args, **kwargs):
         if request.POST and request.POST.get('comment_text'):
             a = {
@@ -177,7 +180,7 @@ class TaskView(DetailView):
                 'user': request.user,
                 'task': self.get_object()
             }
-            if request.POST.get('hidden') == '1':
+            if request.POST.get('hidden') == '1' or self.is_developer():
                 a['hidden'] = True
             Comment.objects.create(**a)
         if request.POST and request.POST.get('price') and not self.is_client():
