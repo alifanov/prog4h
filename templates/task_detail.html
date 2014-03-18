@@ -12,7 +12,7 @@
         </div>
     {% endif %}
 
-    {% if not is_client %}
+    {% if is_moderator %}
     <form class="form-inline" method="POST" action="" style="padding-bottom: 40px;">
         {% csrf_token %}
         <div class="form-group">
@@ -27,7 +27,7 @@
         <button class="btn btn-success">Сохранить</button>
     </form>
     {% else %}
-        {% if task.price %}
+        {% if task.price and is_client %}
             <div class="" style="padding-bottom: 40px; ">
                <strong>Цена: {{ task.price }} руб. </strong>
             </div>
