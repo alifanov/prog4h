@@ -2,6 +2,7 @@
 import json
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 # Create your models here.
 
 STATUS_CHOICE = (
@@ -44,6 +45,11 @@ class Task(models.Model):
     worker = models.ForeignKey(User, verbose_name=u'Исполнитель задачи', related_name='work_tasks', null=True)
     status = models.CharField(choices=STATUS_CHOICE, verbose_name=u'Статус задачи', max_length=1, default='N')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name=u'Цена задачи', default=0.0)
+
+    def save(self, *args, **kwargs):
+        msg = u'Создана новая задача:\n{}'.format(self.text)
+        send_mail(u'Новая задача', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com',])
+        super(Task, self).save(*args, **kwargs)
 
     def get_html_status(self):
         html = u'<span class="label label-{}">{}</span>'
