@@ -35,9 +35,11 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="alert-danger">
-                            <a href="#" onclick="javascript: return false;">Статус: {% if is_moderator %}Модератор{% endif %} {% if is_developer %}Разработчик{% endif %}</a>
-                        </li>
+                        {% if not is_client %}
+                            <li class="alert-danger">
+                                <a href="#" onclick="javascript: return false;">Статус: {% if is_moderator %}Модератор{% endif %} {% if is_developer %}Разработчик{% endif %}</a>
+                            </li>
+                        {% endif %}
 
                         <li class="{% if active == 'all' %}active{% endif %}">
                             <a href="{% url 'dashboard' %}">Все задачи <span class="badge pull-right">{{ all_tasks_cnt }}</span></a>
