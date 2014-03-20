@@ -211,6 +211,8 @@ class TaskView(DetailView):
         object = super(TaskView, self).get_object()
         if not self.request.user.is_authenticated():
             raise Http404
+        if self.is_client() and object.author.pk != self.request.user.pk:
+            raise Http404
         return object
 
 class NewSignatureView(View):
