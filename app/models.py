@@ -3,6 +3,8 @@ import json
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 STATUS_CHOICE = (
@@ -88,7 +90,12 @@ class Comment(models.Model):
     task = models.ForeignKey(Task, related_name='comments', verbose_name=u'Задача')
 
     def save(self, *args, **kwargs):
-        msg = u'Создан новый комментарий:\n{}'.format(self.text)
+        msg = u'Создан новый комментарий к задаче {}:\n{}'.format(u'http://{}{}'.format(
+            Site.objects.get_current().domain,
+            reverse('task_detail', kwargs={
+                'pk': self.task.pk
+            })
+        ) , self.text)
         send_mail(u'Новый комментарий', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com','philipp.spock@gmail.com'])
         if not self.hidden:
             send_mail(u'Новый комментарий', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com', self.task.author.email])
