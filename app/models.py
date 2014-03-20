@@ -48,7 +48,7 @@ class Task(models.Model):
 
     def save(self, *args, **kwargs):
         msg = u'Создана новая задача:\n{}'.format(self.text)
-        send_mail(u'Новая задача', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com',])
+        send_mail(u'Новая задача', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com','philipp.spock@gmail.com'])
         super(Task, self).save(*args, **kwargs)
 
     def get_html_status(self):
