@@ -89,7 +89,9 @@ class Comment(models.Model):
 
     def save(self, *args, **kwargs):
         msg = u'Создан новый комментарий:\n{}'.format(self.text)
-        send_mail(u'Новый комментарий', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com',])
+        send_mail(u'Новый комментарий', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com','philipp.spock@gmail.com'])
+        if not self.hidden:
+            send_mail(u'Новый комментарий', msg, 'info@progernachas.ru', ['lifanov.a.v@gmail.com', self.task.author.email])
         super(Comment, self).save(*args, **kwargs)
 
     def __unicode__(self):
