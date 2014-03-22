@@ -11,8 +11,11 @@ from robokassa.signals import result_received
 from registration.signals import user_activated
 from django.contrib.auth.models import Group
 from django.db.models import Count
+from referral.models import UserReferrer
 
 def add2group(sender, user, request, **kwargs):
+    UserReferrer.objects.apply_referrer(user, request)
+
     if not Balance.objects.filter(user=user).exists():
         Balance.objects.create(
             user=user,

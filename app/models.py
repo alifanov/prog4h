@@ -14,19 +14,6 @@ STATUS_CHOICE = (
     ('C', u'Выполнена')
 )
 
-class Referal(models.Model):
-    percent = models.FloatField(default=0.01, verbose_name=u'Процент с дохода с клиента для реферала')
-    referal = models.ForeignKey(User, verbose_name=u'Реферал')
-    users = models.ManyToManyField(User, related_name='referals', verbose_name=u'Аффилиаты')
-    mark = models.CharField(max_length=100, verbose_name=u'Метка для ссылок')
-
-    def __unicode__(self):
-        return self.referal.username
-
-    class Meta:
-        verbose_name = u'Реферал'
-        verbose_name_plural = u'Рефералы'
-
 class Balance(models.Model):
     user = models.OneToOneField(User, verbose_name=u'Пользователь', related_name='balance')
     summ = models.DecimalField(decimal_places=2, max_digits=8, verbose_name=u'Сумма')
